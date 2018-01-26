@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<?php session_start(); ?>
+<?php session_start(); 
+	if(!isset($_SESSION["cart"])){
+		$_SESSION["cart"] = "{}";
+	}
+?>
 <html>
 
 <head>
