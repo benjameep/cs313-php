@@ -11,7 +11,8 @@ require '_shared.php'
         <div class="header">All Posts</div>
         <div class="menu">
 <?php
-foreach ($db->query('SELECT title, id FROM post') as $row)
+$query = $db->query('SELECT title, id FROM post');
+foreach ($query as $row)
 {
 	echo '<a class="item" href="posts.php?id=' . $row['id'] . '">';
 	echo $row['title'];

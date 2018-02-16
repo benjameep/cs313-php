@@ -18,7 +18,7 @@
   $current_page = htmlspecialchars($_SERVER["PHP_SELF"]);
 
   $dbUrl = getenv('DATABASE_URL');
-  echo $dbUrl;
+
   if (empty($dbUrl)) {
     $dbUrl = "postgres://postgres:password@localhost:5432/conference";
   }
