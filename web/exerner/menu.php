@@ -1,5 +1,6 @@
 <?php
-require '_shared.php'
+require '_shared.php';
+echo $db;
 ?>
 
 <div class="ui right fixed vertical menu">
