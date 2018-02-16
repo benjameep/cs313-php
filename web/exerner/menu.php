@@ -1,6 +1,6 @@
 <?php
-require '_shared.php';
-echo $db;
+// require '_shared.php';
+echo "howdy";
 ?>
 
 <div class="ui right fixed vertical menu">
@@ -12,13 +12,13 @@ echo $db;
         <div class="header">All Posts</div>
         <div class="menu">
 <?php
-$query = $db->query('SELECT title, id FROM post');
-foreach ($query as $row)
-{
-	echo '<a class="item" href="posts.php?id=' . $row['id'] . '">';
-	echo $row['title'];
-	echo '</a>';
-}
+// $query = $db->query('SELECT title, id FROM post');
+// foreach ($query as $row)
+// {
+// 	echo '<a class="item" href="posts.php?id=' . $row['id'] . '">';
+// 	echo $row['title'];
+// 	echo '</a>';
+// }
 ?>
         </div>
     </div>
