@@ -9,10 +9,7 @@
 <body>
 	<div class="ui container">
 		<?php require "menu.php"; ?>
-		<h1 class="ui header">
-			Welcome to Exerner!
-		</h1>
-		<p>Home of the simplest blog posts ever!</p>
+		
 	</div>
 </body>
 
