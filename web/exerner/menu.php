@@ -3,7 +3,7 @@ require_once '_shared.php';
 ?>
 
 <div class="ui right fixed vertical menu">
-    <a class="header item" href="index.html">
+    <a class="header item" href="index.php">
         <img class="ui mini image" src="assets/logo.jpg">
     </a>
     <a id="sign" class="item"></a>
