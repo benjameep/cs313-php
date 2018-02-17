@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css" />
+	<script src="http://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+	    crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.js"></script>
+	<style type="text/css">
+		body>.grid {
+			height: 100%;
+		}
+
+		.image {
+			margin-top: -100px;
+		}
+
+		.column {
+			max-width: 450px;
+		}
+	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/qwest/4.5.0/qwest.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.ui.form').form({
+				fields: {
+					username: 'empty',
+					password : ['minLength[6]', 'empty'],
+				},
+				onSuccess : function(event,fields){
+					event.preventDefault();
+					check(fields)
+					
+				}
+			});
+		});
+
+		async function check(fields){
+			var r = await qwest.post('login.php',fields)
+			if(r.responseText == 'wrong'){
+				$('.ui.form').form('add errors',['Invalid Username or Password'])
+			} else {
+				localStorage.userid = r.responseText
+				window.location.href = 'index.php'
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<div class="ui middle aligned center aligned grid">
+		<div class="column">
+			<h2 class="ui image header">
+				<img src="assets/logo.jpg" class="image">
+				<div class="content">
+					Log-in to your account
+				</div>
+			</h2>
+			<form class="ui large form">
+				<div class="ui stacked segment">
+					<div class="field">
+						<div class="ui left icon input">
+							<i class="user icon"></i>
+							<input type="text" name="username" placeholder="Username">
+						</div>
+					</div>
+					<div class="field">
+						<div class="ui left icon input">
+							<i class="lock icon"></i>
+							<input type="password" name="password" placeholder="Password">
+						</div>
+					</div>
+					<div class="ui fluid large submit button">Login</div>
+				</div>
+
+				<div class="ui error message"></div>
+			</form>
+			<div class="ui message">
+				Don't have an account yet?
+				<a href="signup.html">Sign Up</a>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

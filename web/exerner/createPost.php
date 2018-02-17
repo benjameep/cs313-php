@@ -46,50 +46,29 @@
 		<div class="ui container">
 			<?php require "menu.php"; ?>
 			<h1>Exerner!</h1>
-			<h2 class="ui top attached header">
-				<?=$title?>
-					<div class="sub header">By
-						<?=$opusername?>
-					</div>
-			</h2>
-			<div class="ui attached segment">
-				<p>
-					<?=$body?>
-				</p>
-			</div>
-			<div class="ui comments">
-				<h4 class="ui dividing header">Comments</h4>
-				<?php
-				foreach($comments as $comment){
-					echo '<div class="comment"><div class="content">';
-					echo '<a class="author">' . $comment['username'] . "</a>";
-					echo '<div class="text">' . $comment['body'] . '</div>';
-					echo "</div></div>";
-				}
-				?>
-				<form class="ui reply form" hidden>
+			<form class="ui form">
+				<h2 class="ui top attached header">
+					<input type="text"></input>
+				</h2>
+				<div class="ui attached segment">
 					<div class="field">
-						<textarea style="height:10px"></textarea>
+						<textarea></textarea>
 					</div>
-					<div class="ui primary submit labeled icon button">
-						<i class="icon edit"></i> Add Reply
+					<div class="ui primary submit button">
+						Create Post
 					</div>
-				</form>
-			</div>
+				</div>
+            </form>
 		</div>
 		<script>
-			if(localStorage.userid){
-				$('.reply').show()
-				$('.submit').click(async e => {
-					var match = location.search.match(/id=(\d+)/)
-					await qwest.post('addComment.php',{
-						personid:localStorage.userid,
-						postid:match?match[1]:1,
-						body:$('.reply textarea').val()
-					})
-					location.reload()
+			$('.submit').click(async e => {
+				var r = await qwest.post('_createPost.php',{
+					body:$('.form textarea').val(),
+					title:$('.form .header input').val(),
+					personid:localStorage.userid,
 				})
-			}
+				window.location.href = 'posts.php?id='+r.responseText
+			})
 		</script>
 	</body>
 

@@ -20,7 +20,7 @@
   $dbUrl = getenv('DATABASE_URL');
 
   if (empty($dbUrl)) {
-    $dbUrl = "postgres://postgres:password@localhost:5432/conference";
+    $dbUrl = "postgres://fhtpdujbrnegmq:5b7d0196b882f4f833208b469f66affff3314a511fb3a84c74f4d3f2f588bd29@ec2-54-83-204-230.compute-1.amazonaws.com:5432/d5ugpkepuq2kse";
   }
   $dbopts = parse_url($dbUrl);
   $dbHost = $dbopts["host"];

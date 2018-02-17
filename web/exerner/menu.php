@@ -1,12 +1,12 @@
 <?php
-require '_shared.php';
+require_once '_shared.php';
 ?>
 
 <div class="ui right fixed vertical menu">
     <a class="header item" href="index.html">
         <img class="ui mini image" src="assets/logo.jpg">
     </a>
-    <a class="item" href="sign-in.html">Sign-in</a>
+    <a id="sign" class="item"></a>
     <div class="item">
         <div class="header">All Posts</div>
         <div class="menu">
@@ -21,4 +21,17 @@ foreach ($query as $row)
 ?>
         </div>
     </div>
+    <a id="newPost" class="item" href="createPost.php"><i class="add icon"></i> Create Post</a>
+    <script>
+        var sign = document.getElementById('sign')
+        if(localStorage.userid){
+            sign.innerHTML = "Log out"
+            sign.href = "javascript:(function(){delete localStorage.userid;location.reload()})()"
+            newPost.removeAttribute('hidden')
+        } else {
+            sign.innerHTML = "Login / Sign Up"
+            sign.href = "login.html"
+            document.getElementById('newPost').style.display = 'none'
+        }
+    </script>
 </div>
