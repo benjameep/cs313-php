@@ -6,6 +6,7 @@ require_once '_shared.php';
     <a class="header item" href="index.php">
         <img class="ui mini image" src="assets/logo.jpg">
     </a>
+    <div id="welcome" class="item" hidden>Welcome</div>
     <a id="sign" class="item"></a>
     <div class="item">
         <div class="header">All Posts</div>
@@ -21,17 +22,21 @@ foreach ($query as $row)
 ?>
         </div>
     </div>
-    <a id="newPost" class="item" href="createPost.php"><i class="add icon"></i> Create Post</a>
+    <a id="newPost" class="item" href="createPost.php" hidden><i class="add icon"></i> Create Post</a>
     <script>
         var sign = document.getElementById('sign')
         if(localStorage.userid){
             sign.innerHTML = "Log out"
             sign.href = "javascript:(function(){delete localStorage.userid;location.reload()})()"
-            newPost.removeAttribute('hidden')
+            document.getElementById('newPost').removeAttribute('hidden')
+            var welcome = document.getElementById('welcome')
+            welcome.removeAttribute('hidden')
+            qwest.get(`_getusername.php?id=${localStorage.userid}`).then(r => {
+                welcome.innerHTML = 'Welcome '+r.responseText
+            })
         } else {
             sign.innerHTML = "Login / Sign Up"
             sign.href = "login.html"
-            document.getElementById('newPost').style.display = 'none'
         }
     </script>
 </div>
